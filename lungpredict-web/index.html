@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - LungPredict</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- App Main Layout Container -->
+  <div class="app-container">
+    <!-- Left Sticky Sidebar Container -->
+    <aside id="sidebar-container"></aside>
+
+    <!-- Main Content Right Area Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header Container -->
+      <header id="topbar-container"></header>
+
+      <!-- Main Page Specific Scrollable Content -->
+      <main class="content-area">
+        
+        <!-- Live Backend Status Banner -->
+        <div id="backend-status-banner" class="status-banner" style="display: none;"></div>
+
+        <!-- Welcome Greeting Banner Card -->
+        <section class="card welcome-card">
+          <div class="welcome-text">
+            <p>Welcome back,</p>
+            <h2>Patient 👋</h2>
+            <p>Take charge of your lung health with advanced early-risk classification.</p>
+          </div>
+          <div class="welcome-decor">
+            <i data-lucide="wind"></i>
+          </div>
+        </section>
+
+        <!-- Dynamic Statistics Cards Row -->
+        <section class="stats-grid">
+          <!-- Card 1: Total Predictions -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper total">
+              <i data-lucide="bar-chart-3" class="stat-icon"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Total Predictions</span>
+              <span id="stat-total-predictions" class="stat-value">-</span>
+              <a href="history.html" class="stat-link">
+                <span>View history</span>
+                <i data-lucide="chevron-right" style="width:12px; height:12px;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: High Risk -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper high">
+              <i data-lucide="alert-triangle" class="stat-icon"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">High Risk Cases</span>
+              <span id="stat-high-risk" class="stat-value">-</span>
+              <a href="history.html?risk=High" class="stat-link">
+                <span>View high risk</span>
+                <i data-lucide="chevron-right" style="width:12px; height:12px;"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: Low Risk -->
+          <div class="stat-card">
+            <div class="stat-icon-wrapper low">
+              <i data-lucide="shield-check" class="stat-icon"></i>
+            </div>
+            <div class="stat-content">
+              <span class="stat-label">Low Risk Cases</span>
+              <span id="stat-low-risk" class="stat-value">-</span>
+              <a href="history.html?risk=Low" class="stat-link">
+                <span>View low risk</span>
+                <i data-lucide="chevron-right" style="width:12px; height:12px;"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Highlighted Brand Panel CTA -->
+        <section class="cta-panel">
+          <div class="cta-content">
+            <h3 class="cta-title">About LungPredict Classification</h3>
+            <p class="cta-desc">
+              LungPredict is an early detection tool leveraging machine learning algorithms to assess individuals' lung health risk category (Low, Medium, or High). It analyzes minor physiological inputs, medical background, lifestyle variables, and symptoms.
+            </p>
+          </div>
+          <div class="cta-action">
+            <a href="prediction.html" class="btn-primary">
+              <span>Make a Prediction</span>
+              <i data-lucide="arrow-right" style="width: 1.2rem; height: 1.2rem;"></i>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- App Configuration & API -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  
+  <!-- Global Sidebar & Topbar Renderer -->
+  <script src="js/sidebar.js"></script>
+  
+  <!-- Dashboard Page Controller -->
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

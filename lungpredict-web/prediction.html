@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction - LungPredict</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Loading State Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <span class="loading-text">Analyzing diagnostic indicators...</span>
+  </div>
+
+  <!-- App Main Layout Container -->
+  <div class="app-container">
+    <!-- Left Sticky Sidebar Container -->
+    <aside id="sidebar-container"></aside>
+
+    <!-- Main Content Right Area Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header Container -->
+      <header id="topbar-container"></header>
+
+      <!-- Main Page Specific Scrollable Content -->
+      <main class="content-area">
+
+        <!-- Header -->
+        <header style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; color: var(--text-base);">Risk Assessment Tool</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Please complete the multi-step clinical survey to predict lung cancer risk factors.</p>
+        </header>
+
+        <!-- Dynamic Wizard/Result Container -->
+        <div id="prediction-main-card" class="card" style="min-height: 400px; position: relative;">
+          
+          <!-- Wizard Navigation Step Nodes Header -->
+          <div id="wizard-steps-header" class="wizard-steps">
+            <div class="wizard-step-line" id="step-progress-line"></div>
+            
+            <div class="step-node active" data-step="1">
+              <div class="step-circle">1</div>
+              <span class="step-label">Personal Info</span>
+            </div>
+            <div class="step-node" data-step="2">
+              <div class="step-circle">2</div>
+              <span class="step-label">Medical History</span>
+            </div>
+            <div class="step-node" data-step="3">
+              <div class="step-circle">3</div>
+              <span class="step-label">Lifestyle</span>
+            </div>
+            <div class="step-node" data-step="4">
+              <div class="step-circle">4</div>
+              <span class="step-label">Symptoms</span>
+            </div>
+            <div class="step-node" data-step="5">
+              <div class="step-circle">5</div>
+              <span class="step-label">Review</span>
+            </div>
+          </div>
+
+          <!-- Wizard Form Container -->
+          <form id="wizard-form" novalidate>
+            
+            <!-- STEP 1: Personal Info -->
+            <div class="step-pane active" data-pane="1">
+              <h3 class="pane-title">Personal Information</h3>
+              <p class="pane-subtitle">Enter basic demographics and vital statistics for the patient.</p>
+              
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label class="form-label" for="fullName">Full Name</label>
+                  <input type="text" id="fullName" class="form-control" placeholder="e.g. Daniel Bruk" required>
+                  <span id="error-fullName" class="input-error-msg"></span>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label" for="gender">Gender</label>
+                  <select id="gender" class="form-control" required>
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="age">Age (years)</label>
+                  <input type="number" id="age" class="form-control" min="1" max="120" placeholder="e.g. 45" required>
+                  <span id="error-age" class="input-error-msg"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="height">Height (cm)</label>
+                  <input type="number" id="height" class="form-control" min="50" max="250" placeholder="e.g. 175">
+                  <span id="error-height" class="input-error-msg"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="weight">Weight (kg)</label>
+                  <input type="number" id="weight" class="form-control" min="20" max="300" placeholder="e.g. 70">
+                  <span id="error-weight" class="input-error-msg"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: Medical History -->
+            <div class="step-pane" data-pane="2">
+              <h3 class="pane-title">Medical History</h3>
+              <p class="pane-subtitle">Indicate past and hereditary respiratory diagnostics.</p>
+              
+              <div class="toggle-rows">
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Chronic lung or respiratory disease</span>
+                    <span class="toggle-desc">Asthma, COPD, chronic bronchitis, or emphysema.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="chronicDisease" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="chronicDisease" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Known allergies</span>
+                    <span class="toggle-desc">History of severe allergy, environmental or drug allergies.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="allergy" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="allergy" data-val="No">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: Lifestyle Factors -->
+            <div class="step-pane" data-pane="3">
+              <h3 class="pane-title">Lifestyle & Environment</h3>
+              <p class="pane-subtitle">Specify behavioral habits and direct exposures.</p>
+              
+              <div class="toggle-rows">
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Current or former smoker</span>
+                    <span class="toggle-desc">Regular inhalation of tobacco products or vaping.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="smoking" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="smoking" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Regular alcohol consumption</span>
+                    <span class="toggle-desc">Weekly consumption of alcoholic drinks.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="alcoholConsuming" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="alcoholConsuming" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Peer pressure to smoke/drink</span>
+                    <span class="toggle-desc">Social circle pressure encouraging smoking or drinking.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="peerPressure" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="peerPressure" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Yellowing of fingers</span>
+                    <span class="toggle-desc">Direct skin staining, typical of frequent active smoking.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="yellowFingers" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="yellowFingers" data-val="No">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4: Symptoms -->
+            <div class="step-pane" data-pane="4">
+              <h3 class="pane-title">Symptom Checklist</h3>
+              <p class="pane-subtitle">Toggle occurrences of respiratory and metabolic markers.</p>
+              
+              <div class="toggle-rows">
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Anxiety</span>
+                    <span class="toggle-desc">Unusual levels of apprehension, palpitations, or tension.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="anxiety" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="anxiety" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Persistent fatigue</span>
+                    <span class="toggle-desc">Unexplained chronic exhaustion and lack of physical energy.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="fatigue" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="fatigue" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Wheezing</span>
+                    <span class="toggle-desc">High-pitched whistling sound made while breathing.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="wheezing" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="wheezing" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Chronic coughing</span>
+                    <span class="toggle-desc">Cough lasting longer than 4-6 weeks with no clear trigger.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="coughing" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="coughing" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Shortness of breath</span>
+                    <span class="toggle-desc">Dyspnea, breathing discomfort during rest or mild activity.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="shortnessOfBreath" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="shortnessOfBreath" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Difficulty swallowing</span>
+                    <span class="toggle-desc">Dysphagia, throat tightness during drinking or eating.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="swallowingDifficulty" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="swallowingDifficulty" data-val="No">No</button>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-label-group">
+                    <span class="toggle-title">Chest pain</span>
+                    <span class="toggle-desc">Sharp, dull, or aching sensation inside the thoracic cage.</span>
+                  </div>
+                  <div class="toggle-buttons">
+                    <button type="button" class="btn-pill" data-field="chestPain" data-val="Yes">Yes</button>
+                    <button type="button" class="btn-pill" data-field="chestPain" data-val="No">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 5: Review & Submit -->
+            <div class="step-pane" data-pane="5">
+              <h3 class="pane-title">Review & Submit</h3>
+              <p class="pane-subtitle">Double check the recorded patient file before dispatching to prediction servers.</p>
+              
+              <div class="review-grid" id="review-summary-container">
+                <!-- Dynamically Populated by prediction.js -->
+              </div>
+            </div>
+
+            <!-- Navigation Controls Footer -->
+            <div class="wizard-actions" id="wizard-actions-container">
+              <button type="button" id="btn-back" class="btn-secondary" disabled>
+                <i data-lucide="arrow-left" style="width: 1.1rem; height: 1.1rem;"></i>
+                <span>Back</span>
+              </button>
+              
+              <button type="button" id="btn-next" class="btn-primary">
+                <span>Next</span>
+                <i data-lucide="arrow-right" style="width: 1.1rem; height: 1.1rem;"></i>
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Dynamic Result Screen (Initially Hidden) -->
+          <div id="result-view-container" style="display: none;">
+            <!-- Dynamically Populated by prediction.js -->
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- App Configuration & API Wrapper -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  
+  <!-- Global Sidebar & Topbar Renderer -->
+  <script src="js/sidebar.js"></script>
+  
+  <!-- Wizard Logic & Interactive Events Controller -->
+  <script src="js/prediction.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - LungPredict</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- App Main Layout Container -->
+  <div class="app-container">
+    <!-- Left Sticky Sidebar Container -->
+    <aside id="sidebar-container"></aside>
+
+    <!-- Main Content Right Area Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header Container -->
+      <header id="topbar-container"></header>
+
+      <!-- Main Page Specific Scrollable Content -->
+      <main class="content-area">
+        
+        <!-- About Header Information Card -->
+        <section class="card about-header">
+          <div class="about-header-text">
+            <h2>About LungPredict</h2>
+            <p>
+              LungPredict is an advanced early detection screening tool designed to empower individuals with instant, data-backed insights regarding their lung health. Recognizing that early identification of lung conditions is critical for positive therapeutic outcomes, our system provides quick, non-invasive risk assessments to facilitate timely discussions with healthcare professionals.
+            </p>
+            <p>
+              The application utilizes statistical modeling and machine learning algorithms (powered by our FastAPI backend) that process diverse factors, including patient demographic characteristics, lifestyle factors, hereditary and environmental respiratory histories, and specific physiological symptoms.
+            </p>
+            <p>
+              <em>Please Note:</em> LungPredict is designed to serve as an educational and screening companion tool. It is <strong>not</strong> a substitute for professional clinical advice, official physical examination, diagnostic imaging (like chest CT scans), or a medical doctor's diagnosis.
+            </p>
+          </div>
+          <div class="about-decor">
+            <i data-lucide="stethoscope"></i>
+          </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section>
+          <h2 class="section-title">Key Features</h2>
+          
+          <div class="features-grid">
+            <!-- Feature 1: ML Powered -->
+            <div class="feature-card">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="brain-circuit" class="feature-icon"></i>
+              </div>
+              <h3>ML Powered</h3>
+              <p>Uses trained machine learning classification algorithms to evaluate clinical characteristics and map out predictive hazard profiles.</p>
+            </div>
+
+            <!-- Feature 2: Early Detection -->
+            <div class="feature-card">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="clock" class="feature-icon"></i>
+              </div>
+              <h3>Early Detection</h3>
+              <p>Helps in identifying potential warning signs and elevated risks early, laying the foundation for timely proactive medical intervention.</p>
+            </div>
+
+            <!-- Feature 3: Risk Assessment -->
+            <div class="feature-card">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="bar-chart-3" class="feature-icon"></i>
+              </div>
+              <h3>Risk Assessment</h3>
+              <p>Provides a clear risk classification level (Low, Medium, High) accompanied by an actionable percentile-probability estimation.</p>
+            </div>
+
+            <!-- Feature 4: Secure & Private -->
+            <div class="feature-card">
+              <div class="feature-icon-wrapper">
+                <i data-lucide="shield-check" class="feature-icon"></i>
+              </div>
+              <h3>Secure & Private</h3>
+              <p>Your entered physiological features and lifestyle assessments are processed entirely securely and handled with strict privacy.</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- App Configuration -->
+  <script src="js/config.js"></script>
+  
+  <!-- Global Sidebar & Topbar Renderer -->
+  <script src="js/sidebar.js"></script>
+
+</body>
+</html>

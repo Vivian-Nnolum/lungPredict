@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History - LungPredict</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- App Main Layout Container -->
+  <div class="app-container">
+    <!-- Left Sticky Sidebar Container -->
+    <aside id="sidebar-container"></aside>
+
+    <!-- Main Content Right Area Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar Header Container -->
+      <header id="topbar-container"></header>
+
+      <!-- Main Page Specific Scrollable Content -->
+      <main class="content-area">
+
+        <!-- Page Title Header -->
+        <header style="margin-bottom: 2rem;">
+          <h2 style="font-size: 1.75rem; font-weight: 800; color: var(--text-base);">History Logs</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">View, filter, and review details of all previous patient risk assessments.</p>
+        </header>
+
+        <!-- Filters Section -->
+        <section class="history-filters">
+          <!-- Live Search Input -->
+          <div class="search-wrapper">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="search-input" class="form-control search-input" placeholder="Search by patient ID or name...">
+            <i data-lucide="calendar" class="calendar-decor-icon"></i>
+          </div>
+          
+          <!-- Category Selector Dropdown -->
+          <select id="filter-risk" class="form-control filter-select">
+            <option value="All" selected>All Risk Levels</option>
+            <option value="Low">Low Risk</option>
+            <option value="Medium">Medium Risk</option>
+            <option value="High">High Risk</option>
+          </select>
+        </section>
+
+        <!-- Main History Table Container -->
+        <section class="table-container">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Reference ID</th>
+                <th style="width: 25%;">Patient Name</th>
+                <th style="width: 25%;">Date & Time</th>
+                <th style="width: 15%;">Risk Level</th>
+                <th style="width: 12%;">Probability</th>
+                <th style="width: 8%; text-align: center;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="history-table-body">
+              <!-- Dynamically Populated by history.js -->
+            </tbody>
+          </table>
+          
+          <!-- Empty State (Hidden initially) -->
+          <div id="empty-state" class="empty-row-container" style="display: none;">
+            <i data-lucide="alert-circle" class="empty-icon"></i>
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-base);">No Matching Predictions Found</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Try adjusting your search queries or category filters.</p>
+          </div>
+        </section>
+
+        <!-- Table Pagination Controls -->
+        <section class="pagination-container" id="pagination-controls">
+          <div class="pagination-info" id="pagination-info-text">
+            Showing 1 - 5 of 5 entries
+          </div>
+          <div class="pagination-buttons">
+            <button class="btn-page btn-page-nav" id="btn-page-prev" title="Previous Page">
+              <i data-lucide="chevron-left" style="width: 1.15rem; height: 1.15rem;"></i>
+            </button>
+            <div style="display: flex; gap: 0.25rem;" id="pagination-pages-list">
+              <!-- Number buttons injected here -->
+            </div>
+            <button class="btn-page btn-page-nav" id="btn-page-next" title="Next Page">
+              <i data-lucide="chevron-right" style="width: 1.15rem; height: 1.15rem;"></i>
+            </button>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Prediction Details Modal Dialog -->
+  <div id="detail-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-id-title">Prediction Record Details</h3>
+        <button class="close-btn" id="modal-close-btn" title="Close details">
+          <i data-lucide="x" style="width: 1.25rem; height: 1.25rem;"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-detail-body">
+        <!-- Dynamically Populated by history.js -->
+      </div>
+      <div style="text-align: right; margin-top: 1.5rem;">
+        <button type="button" class="btn-secondary" id="modal-close-action-btn">Close Record</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- App Configuration -->
+  <script src="js/config.js"></script>
+  
+  <!-- Global Sidebar & Topbar Renderer -->
+  <script src="js/sidebar.js"></script>
+  
+  <!-- History Filtering, Pagination & Dialog Controller -->
+  <script src="js/history.js"></script>
+
+</body>
+</html>
