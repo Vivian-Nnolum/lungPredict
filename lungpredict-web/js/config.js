@@ -1,5 +1,5 @@
 // js/config.js
-const API_BASE_URL = "http://127.0.0.1:8000"; // change to deployed backend URL when live
+const API_BASE_URL = "https://lungpredict.onrender.com"; // change to deployed backend URL when live
 
 // Shared constants
 const STORAGE_KEY = "lungpredict_history";
