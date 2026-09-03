@@ -5,11 +5,11 @@ const API_BASE_URL = "http://127.0.0.1:8000"; // change to deployed backend URL 
 const STORAGE_KEY = "lungpredict_history";
 
 const SAMPLE_HISTORY = [
-  { "id": "#LPD-00012", "name": "Daniel Bruk", "date": "23 May 2025", "time": "10:30 AM", "risk": "Low", "probability": 18 },
-  { "id": "#LPD-00011", "name": "David Bruk", "date": "15 May 2025", "time": "02:15 PM", "risk": "High", "probability": 76 },
-  { "id": "#LPD-00010", "name": "Daniel Bruk", "date": "05 May 2025", "time": "09:45 AM", "risk": "Medium", "probability": 45 },
-  { "id": "#LPD-00009", "name": "Daniel Bruk", "date": "28 Apr 2025", "time": "11:20 AM", "risk": "Low", "probability": 22 },
-  { "id": "#LPD-00008", "name": "Daniel Bruk", "date": "18 Apr 2025", "time": "04:50 PM", "risk": "Low", "probability": 15 }
+  { "id": "#LPD-00012", "name": "Aka Chukwu", "date": "23 May 2025", "time": "10:30 AM", "risk": "Low", "probability": 18 },
+  { "id": "#LPD-00011", "name": "Victor ", "date": "15 May 2025", "time": "02:15 PM", "risk": "High", "probability": 76 },
+  { "id": "#LPD-00010", "name": "Chi Som", "date": "05 May 2025", "time": "09:45 AM", "risk": "Medium", "probability": 45 },
+  { "id": "#LPD-00009", "name": "Tochi Michael", "date": "28 Apr 2025", "time": "11:20 AM", "risk": "Low", "probability": 22 },
+  { "id": "#LPD-00008", "name": "Vivian Chisom", "date": "18 Apr 2025", "time": "04:50 PM", "risk": "Low", "probability": 15 }
 ];
 
 // Helper functions for history storage

@@ -53,7 +53,6 @@ class PredictionResponse(BaseModel):
     
 #     binary_map = {"Yes": 1, "No": 0}
     
-
 #     gender_map = {"M": 1, "F": 0}
     
 #     cleaned_data = {
