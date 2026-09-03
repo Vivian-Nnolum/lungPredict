@@ -888,7 +888,7 @@ body {
   color: var(--text-base);
 }
 
-/* Alternatively, let's use the Green brand style for Yes, and Slate for No as fits a premium app! */
+/* Alternatively, let's use the Green brand style for Yes, and Slate for No */
 .btn-pill.selected-yes {
   background-color: var(--brand-500);
   border-color: var(--brand-500);
